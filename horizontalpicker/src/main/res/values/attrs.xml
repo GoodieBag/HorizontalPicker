@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HorizontalPicker">
+        <attr name="android:textColor"/>
+        <attr name="android:textSize" />
+        <attr name="values" format="reference" />
+    </declare-styleable>
+</resources>

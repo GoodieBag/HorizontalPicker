@@ -14,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +38,9 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
     private List<ImageView> ivList = new ArrayList<>();
 
     private boolean isIcon = false;
-    private int iconHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+    private int itemHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+    private int itemWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
+    private int itemMargin = 20;
 
     //Listeners
     OnSelectionChangeListener changeListener;
@@ -64,22 +64,27 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
     public HorizontalPicker(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initAttributes(context, attrs, defStyleAttr);
+        this.setGravity(Gravity.CENTER);
         if(isIcon){
-            initIvViews(context, attrs, defStyleAttr);
+            initIvViews(context);
         }else {
-            initTvViews(context, attrs, defStyleAttr);
+            initTvViews(context);
         }
     }
 
     private void initAttributes(Context context, AttributeSet attrs, int defStyleAttr) {
         if(attrs != null){
             textSize *= DENSITY;
-            iconHeight *= DENSITY;
+            itemHeight *= DENSITY;
+            itemWidth *= DENSITY;
+            itemMargin *= DENSITY;
             final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.HorizontalPicker, defStyleAttr, 0);
             backgroundSelector = array.getResourceId(R.styleable.HorizontalPicker_backgroundSelector, backgroundSelector);
             colorSelector = array.getResourceId(R.styleable.HorizontalPicker_textColorSelector, colorSelector);
             textSize = (int) array.getDimension(R.styleable.HorizontalPicker_textSize, textSize);
-            iconHeight = (int) array.getDimension(R.styleable.HorizontalPicker_icon_height, iconHeight);
+            itemHeight = (int) array.getDimension(R.styleable.HorizontalPicker_itemHeight, itemHeight);
+            itemWidth = (int) array.getDimension(R.styleable.HorizontalPicker_itemWidth, itemWidth);
+            itemMargin = (int) array.getDimension(R.styleable.HorizontalPicker_itemMargin, itemMargin);
             values = array.getTextArray(R.styleable.HorizontalPicker_values);
             isIcon = array.getBoolean(R.styleable.HorizontalPicker_icons, isIcon);
             if(isIcon) {
@@ -92,40 +97,48 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
 
     }
 
-    private void initTvViews(Context context, AttributeSet attrs, int defStyleAttr) {
-        //Linear Layout
-        this.setOrientation(HORIZONTAL);
-        //this.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        this.setOnTouchListener(this);
-        //TextViews
-        for(int i = 0; i < values.length; i++){
-            TextView tv = new TextView(context);
-            tv.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,1.0f));
-            tv.setTextSize(textSize);
-            tv.setTextColor(getResources().getColorStateList(colorSelector));
-            tv.setBackgroundResource(backgroundSelector);
-            tv.setGravity(Gravity.CENTER);
-            tv.setText(values[i]);
-            this.addView(tv);
-            tvList.add(tv);
+    private void initTvViews(Context context) {
+        if(values !=null) {
+            //Linear Layout
+            this.setOrientation(HORIZONTAL);
+            //this.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            this.setOnTouchListener(this);
+            //TextViews
+            LayoutParams params = new LinearLayout.LayoutParams(itemWidth, itemHeight);
+            params.setMargins(itemMargin,itemMargin,itemMargin,itemMargin);
+            for (int i = 0; i < values.length; i++) {
+                TextView tv = new TextView(context);
+                tv.setLayoutParams(params);
+                tv.setTextSize(textSize);
+                tv.setTextColor(getResources().getColorStateList(colorSelector));
+                tv.setBackgroundResource(backgroundSelector);
+                tv.setGravity(Gravity.CENTER);
+                tv.setText(values[i]);
+                this.addView(tv);
+                tvList.add(tv);
+            }
         }
 
     }
 
-    private void initIvViews(Context context, AttributeSet attrs, int defStyleAttr){
-        //Linear Layout
-        this.setOrientation(HORIZONTAL);
-        //this.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        this.setOnTouchListener(this);
-        //ImageViews
-        for(int i = 0; i < values.length; i++){
-            ImageView iv = new ImageView(context);
-            iv.setLayoutParams(new LinearLayout.LayoutParams(0, iconHeight,1.0f));
-            iv.setBackgroundResource(backgroundSelector);
-            iv.setImageResource(drawableIcons[i]);
-            iv.setScaleType(ImageView.ScaleType.CENTER);
-            this.addView(iv);
-            ivList.add(iv);
+    private void initIvViews(Context context){
+        if(values != null) {
+            //Linear Layout
+            this.setOrientation(HORIZONTAL);
+            //this.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            this.setOnTouchListener(this);
+            LayoutParams params = new LinearLayout.LayoutParams(itemWidth, itemHeight);
+            params.setMargins(itemMargin,itemMargin,itemMargin,itemMargin);
+            //ImageViews
+            for (int i = 0; i < values.length; i++) {
+                ImageView iv = new ImageView(context);
+                iv.setLayoutParams(params);
+                iv.setBackgroundResource(backgroundSelector);
+                iv.setImageResource(drawableIcons[i]);
+                iv.setScaleType(ImageView.ScaleType.CENTER);
+                this.addView(iv);
+                ivList.add(iv);
+            }
         }
 
     }
@@ -138,8 +151,10 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
                 if(tvSelected.isSelected()){
                     selectedItem = tvSelected.getText().toString();
                     index = i;
-                    changeListener.onItemSelect(index);
-                    changeListener.onItemSelect(index,selectedItem);
+                    if(changeListener != null) {
+                        changeListener.onItemSelect(index);
+                        changeListener.onItemSelect(index, selectedItem);
+                    }
                 }
 
             }
@@ -149,7 +164,9 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
                 ivSelected.setSelected(view == (ivList.get(i)));
                 if(ivSelected.isSelected()){
                     index = i;
-                    changeListener.onItemSelect(index);
+                    if(changeListener != null) {
+                        changeListener.onItemSelect(index);
+                    }
                 }
             }
         }
@@ -198,7 +215,7 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
         if(!isIcon) {
             return selectedItem;
         }else{
-            return " ";
+            return "";
         }
     }
 
@@ -206,6 +223,85 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
         return index;
     }
 
+    public CharSequence[] getValues() {
+        return values;
+    }
+
+    public void setValues(CharSequence[] values) {
+        this.values = values;
+    }
+
+    public int[] getDrawableIcons() {
+        return drawableIcons;
+    }
+
+    public void setDrawableIcons(int[] drawableIcons) {
+        this.drawableIcons = drawableIcons;
+    }
+
+    public int getBackgroundSelector() {
+        return backgroundSelector;
+    }
+
+    public void setBackgroundSelector(int backgroundSelector) {
+        this.backgroundSelector = backgroundSelector;
+    }
+
+    public int getColorSelector() {
+        return colorSelector;
+    }
+
+    public void setColorSelector(int colorSelector) {
+        this.colorSelector = colorSelector;
+    }
+
+    public int getTextSize() {
+        return textSize;
+    }
+
+    public void setTextSize(int textSize) {
+        this.textSize = textSize;
+    }
+
+    public boolean isIcon() {
+        return isIcon;
+    }
+
+    public void setIcon(boolean icon) {
+        isIcon = icon;
+    }
+
+    public int getItemWidth() {
+        return itemWidth;
+    }
+
+    public void setItemWidth(int itemWidth) {
+        this.itemWidth = itemWidth;
+    }
+
+    public int getItemMargin() {
+        return itemMargin;
+    }
+
+    public void setItemMargin(int itemMargin) {
+        this.itemMargin = itemMargin;
+    }
+
+    public int getItemHeight() {
+        return itemHeight;
+    }
+
+    public void setItemHeight(int itemHeight) {
+        this.itemHeight = itemHeight;
+    }
+
+    public void prepareView(Context context){
+        if(isIcon){
+            initIvViews(context);
+        }else{
+            initTvViews(context);
+        }
+    }
     public interface OnSelectionChangeListener{
         void onItemSelect(int index);
         void onItemSelect(int index, String text);

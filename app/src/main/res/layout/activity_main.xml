@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="#fff"
+    android:orientation="vertical"
     tools:context="com.goodiebag.example.horizontalpicker.MainActivity">
 
     <com.goodiebag.horizontalpicker.HorizontalPicker
@@ -14,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:textSize="20sp"
+        app:itemMargin="10dp"
         app:icons="true"
         app:values="@array/values"/>
 </LinearLayout>

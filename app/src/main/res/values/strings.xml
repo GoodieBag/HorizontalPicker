@@ -3,10 +3,10 @@
 
     <string-array name="values">
 
-        <item>selector_src</item>
-        <item>selector_src</item>
-        <item>selector_src</item>
-        <item>selector_src</item>
+        <item>ic_launcher</item>
+        <item>ic_launcher</item>
+        <item>ic_launcher</item>
+        <item>ic_launcher</item>
 
     </string-array>
 

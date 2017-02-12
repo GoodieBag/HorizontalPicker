@@ -6,6 +6,8 @@
         <attr name="textColorSelector" format="reference"/>
         <attr name="values" format="reference"/>
         <attr name="icons" format="boolean"/>
-        <attr name="icon_height" format="dimension"/>
+        <attr name="itemHeight" format="dimension"/>
+        <attr name="itemWidth" format="dimension"/>
+        <attr name="itemMargin" format="dimension"/>
     </declare-styleable>
 </resources>

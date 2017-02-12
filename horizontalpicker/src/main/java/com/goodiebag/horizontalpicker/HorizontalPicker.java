@@ -33,14 +33,13 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
     private int textSize = 12;
     private String selectedItem;
     private int index;
-
-    private List<TextView> tvList =  new ArrayList<>();
-    private List<ImageView> ivList = new ArrayList<>();
-
     private boolean isIcon = false;
     private int itemHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
     private int itemWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
     private int itemMargin = 20;
+
+    private List<TextView> tvList =  new ArrayList<>();
+    private List<ImageView> ivList = new ArrayList<>();
 
     //Listeners
     OnSelectionChangeListener changeListener;

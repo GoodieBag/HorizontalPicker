@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         picker.setChangeListener(listener);
-        LinearLayout main = (LinearLayout) findViewById(R.id.activity_main);
+      /*  LinearLayout main = (LinearLayout) findViewById(R.id.activity_main);
         HorizontalPicker picker2 = new HorizontalPicker(this);
         picker2.setBackgroundSelector(R.drawable.selector_background_example);
         picker2.setValues(new CharSequence[]{"S1","S2","S3"});
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         picker2.setItemWidth(100);
         picker2.setItemMargin(10);
         picker2.prepareView(this);
-        main.addView(picker2);
+        main.addView(picker2);*/
 
     }
 }

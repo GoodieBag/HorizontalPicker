@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="HorizontalPicker">
-        <attr name="textSize" format="dimension" />
+        <attr name="textSize" format="dimension"/>
         <attr name="backgroundSelector" format="reference"/>
         <attr name="textColorSelector" format="reference"/>
         <attr name="values" format="reference"/>

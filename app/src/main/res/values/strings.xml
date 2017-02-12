@@ -2,12 +2,15 @@
     <string name="app_name">HorizontalPicker</string>
 
     <string-array name="values">
-
         <item>S1</item>
         <item>S2</item>
         <item>S3</item>
         <item>S4</item>
+    </string-array>
 
+    <string-array name="icons">
+        <item>ic</item>
+        <item>ic</item>
     </string-array>
 
 </resources>

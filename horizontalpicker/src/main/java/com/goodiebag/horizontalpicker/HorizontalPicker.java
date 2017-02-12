@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -73,16 +74,13 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
 
     private void initAttributes(Context context, AttributeSet attrs, int defStyleAttr) {
         if(attrs != null){
-            textSize *= DENSITY;
-            itemHeight *= DENSITY;
-            itemWidth *= DENSITY;
-            itemMargin *= DENSITY;
             final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.HorizontalPicker, defStyleAttr, 0);
             backgroundSelector = array.getResourceId(R.styleable.HorizontalPicker_backgroundSelector, backgroundSelector);
             colorSelector = array.getResourceId(R.styleable.HorizontalPicker_textColorSelector, colorSelector);
-            textSize = (int) array.getDimension(R.styleable.HorizontalPicker_textSize, textSize);
-            itemHeight = (int) array.getDimension(R.styleable.HorizontalPicker_itemHeight, itemHeight);
-            itemWidth = (int) array.getDimension(R.styleable.HorizontalPicker_itemWidth, itemWidth);
+
+            textSize = (int) array.getDimensionPixelSize(R.styleable.HorizontalPicker_textSize, textSize);
+            itemHeight = (int) array.getDimensionPixelSize(R.styleable.HorizontalPicker_itemHeight, itemHeight);
+            itemWidth = (int) array.getDimensionPixelSize(R.styleable.HorizontalPicker_itemWidth, itemWidth);
             itemMargin = (int) array.getDimension(R.styleable.HorizontalPicker_itemMargin, itemMargin);
             values = array.getTextArray(R.styleable.HorizontalPicker_values);
             isIcon = array.getBoolean(R.styleable.HorizontalPicker_icons, isIcon);
@@ -104,12 +102,11 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
             this.setOnTouchListener(this);
             //TextViews
             LayoutParams params = new LinearLayout.LayoutParams(itemWidth, itemHeight);
-            params.gravity = Gravity.CENTER;
             params.setMargins(itemMargin,itemMargin,itemMargin,itemMargin);
             for (int i = 0; i < values.length; i++) {
                 TextView tv = new TextView(context);
                 tv.setLayoutParams(params);
-                tv.setTextSize(textSize);
+                tv.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
                 tv.setTextColor(getResources().getColorStateList(colorSelector));
                 tv.setBackgroundResource(backgroundSelector);
                 tv.setGravity(Gravity.CENTER);
@@ -135,7 +132,7 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
                 iv.setLayoutParams(params);
                 iv.setBackgroundResource(backgroundSelector);
                 iv.setImageResource(drawableIcons[i]);
-                iv.setScaleType(ImageView.ScaleType.CENTER);
+                iv.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 this.addView(iv);
                 ivList.add(iv);
             }

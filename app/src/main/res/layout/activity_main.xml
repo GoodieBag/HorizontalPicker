@@ -14,8 +14,20 @@
         android:id="@+id/picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textSize="20sp"
-        app:itemMargin="10dp"
-        app:icons="true"
+        app:textSize="18sp"
+        app:itemMargin="5dp"
+        app:itemHeight="40dp"
+        app:itemWidth="40dp"
+        app:backgroundSelector="@drawable/selector_background_example"
+        app:textColorSelector="@drawable/selector_textview"
+        app:values="@array/values"/>
+
+    <com.goodiebag.horizontalpicker.HorizontalPicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textSize="18sp"
+        app:itemMargin="5dp"
+        app:backgroundSelector="@drawable/selector_background_example"
+        app:textColorSelector="@drawable/selector_textview"
         app:values="@array/values"/>
 </LinearLayout>

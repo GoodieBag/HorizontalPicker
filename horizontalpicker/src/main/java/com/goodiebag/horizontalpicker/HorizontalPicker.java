@@ -104,6 +104,7 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
             this.setOnTouchListener(this);
             //TextViews
             LayoutParams params = new LinearLayout.LayoutParams(itemWidth, itemHeight);
+            params.gravity = Gravity.CENTER;
             params.setMargins(itemMargin,itemMargin,itemMargin,itemMargin);
             for (int i = 0; i < values.length; i++) {
                 TextView tv = new TextView(context);

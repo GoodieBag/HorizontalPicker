@@ -3,10 +3,10 @@
 
     <string-array name="values">
 
-        <item>ic_launcher</item>
-        <item>ic_launcher</item>
-        <item>ic_launcher</item>
-        <item>ic_launcher</item>
+        <item>S1</item>
+        <item>S2</item>
+        <item>S3</item>
+        <item>S4</item>
 
     </string-array>
 

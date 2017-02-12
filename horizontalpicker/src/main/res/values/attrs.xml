@@ -5,5 +5,7 @@
         <attr name="backgroundSelector" format="reference"/>
         <attr name="textColorSelector" format="reference"/>
         <attr name="values" format="reference"/>
+        <attr name="icons" format="boolean"/>
+        <attr name="icon_height" format="dimension"/>
     </declare-styleable>
 </resources>

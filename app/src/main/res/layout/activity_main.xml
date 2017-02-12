@@ -10,8 +10,10 @@
     tools:context="com.goodiebag.example.horizontalpicker.MainActivity">
 
     <com.goodiebag.horizontalpicker.HorizontalPicker
+        android:id="@+id/picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:textSize="20sp"
+        app:icons="true"
         app:values="@array/values"/>
 </LinearLayout>

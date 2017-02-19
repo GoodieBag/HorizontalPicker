@@ -4,8 +4,6 @@
         <attr name="textSize" format="dimension"/>
         <attr name="backgroundSelector" format="reference"/>
         <attr name="textColorSelector" format="reference"/>
-        <attr name="values" format="reference"/>
-        <attr name="icons" format="boolean"/>
         <attr name="itemHeight" format="dimension"/>
         <attr name="itemWidth" format="dimension"/>
         <attr name="itemMargin" format="dimension"/>

@@ -2,11 +2,12 @@ package com.goodiebag.example.horizontalpicker;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.goodiebag.horizontalpicker.HorizontalPicker;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,30 +15,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        HorizontalPicker picker = (HorizontalPicker) findViewById(R.id.picker);
+        HorizontalPicker hpText = (HorizontalPicker) findViewById(R.id.hpText);
+        HorizontalPicker hpImage = (HorizontalPicker) findViewById(R.id.hpImage);
         HorizontalPicker.OnSelectionChangeListener listener = new HorizontalPicker.OnSelectionChangeListener() {
             @Override
-            public void onItemSelect(int index) {
-                Log.d("selectedInt", "" + index);
+            public void onItemSelect(HorizontalPicker picker, int index) {
+                HorizontalPicker.PickerItem selected = picker.getSelectedItem();
+                Toast.makeText(MainActivity.this, selected.hasDrawable() ? "Item at " + (picker.getSelectedIndex() + 1) + " is selected" : selected.getText() + " is selected", Toast.LENGTH_SHORT).show();
             }
 
-            @Override
-            public void onItemSelect(int index, String text) {
-                Log.d("selected", text + " : " + index);
-
-            }
         };
-        picker.setChangeListener(listener);
-      /*  LinearLayout main = (LinearLayout) findViewById(R.id.activity_main);
-        HorizontalPicker picker2 = new HorizontalPicker(this);
-        picker2.setBackgroundSelector(R.drawable.selector_background_example);
-        picker2.setValues(new CharSequence[]{"S1","S2","S3"});
-        picker2.setTextSize(25);
-        picker2.setItemHeight(100);
-        picker2.setItemWidth(100);
-        picker2.setItemMargin(10);
-        picker2.prepareView(this);
-        main.addView(picker2);*/
+
+        List<HorizontalPicker.PickerItem> textItems = new ArrayList<>();
+        textItems.add(new HorizontalPicker.TextItem("S1"));
+        textItems.add(new HorizontalPicker.TextItem("S2"));
+        textItems.add(new HorizontalPicker.TextItem("S3"));
+        textItems.add(new HorizontalPicker.TextItem("S4"));
+        textItems.add(new HorizontalPicker.TextItem("S5"));
+
+        hpText.setItems(textItems);
+        hpText.setSelectedIndex(0);
+
+        List<HorizontalPicker.PickerItem> imageItems = new ArrayList<>();
+        imageItems.add(new HorizontalPicker.DrawableItem(R.drawable.icon_led));
+        imageItems.add(new HorizontalPicker.DrawableItem(R.drawable.icon_ir));
+
+        hpImage.setItems(imageItems);
+        hpImage.setSelectedIndex(0);
+
+        hpText.setChangeListener(listener);
+        hpImage.setChangeListener(listener);
 
     }
 }

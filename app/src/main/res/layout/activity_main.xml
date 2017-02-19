@@ -9,7 +9,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.goodiebag.horizontalpicker.HorizontalPicker
-        android:id="@+id/picker"
+        android:id="@+id/hpText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ccc"
@@ -18,20 +18,18 @@
         app:itemHeight="40dp"
         app:itemWidth="40dp"
         app:backgroundSelector="@drawable/selector_background_example"
-        app:textColorSelector="@drawable/selector_textview"
-        app:values="@array/values"/>
+        app:textColorSelector="@color/selector_text_view" />
 
     <com.goodiebag.horizontalpicker.HorizontalPicker
+        android:id="@+id/hpImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ccc"
-        app:icons="true"
         app:itemMargin="5dp"
         app:itemHeight="40dp"
         app:itemWidth="40dp"
         app:backgroundSelector="@drawable/selector_background_example"
-        app:textColorSelector="@drawable/selector_textview"
-        app:values="@array/icons"/>
+        app:textColorSelector="@color/selector_text_view"/>
 
 
 </LinearLayout>

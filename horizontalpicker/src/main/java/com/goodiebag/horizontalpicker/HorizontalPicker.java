@@ -30,15 +30,12 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
     @ColorRes
     private int colorSelector = R.color.selector_tv;
     private int textSize = 12;
-
-    private int selectedIndex;
-
+    private int selectedIndex=-1;
     private int itemHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
     private int itemWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
     private int itemMargin = 20;
 
     private List<PickerItem> items = new ArrayList<>();
-
 
     //Listeners
     OnSelectionChangeListener changeListener;
@@ -310,6 +307,4 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
     public interface OnSelectionChangeListener {
         void onItemSelect(HorizontalPicker picker, int index);
     }
-
-
 }

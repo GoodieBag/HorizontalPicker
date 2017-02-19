@@ -8,18 +8,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.goodiebag.horizontalpicker.HorizontalPicker
-        android:id="@+id/hpText"
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ccc"
-        app:textSize="18sp"
-        app:itemMargin="5dp"
-        app:itemHeight="40dp"
-        app:itemWidth="40dp"
-        app:backgroundSelector="@drawable/selector_background_example"
-        app:textColorSelector="@color/selector_text_view" />
+        android:scrollbars="none">
 
+        <com.goodiebag.horizontalpicker.HorizontalPicker
+            android:id="@+id/hpText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ccc"
+            app:textSize="18sp"
+            app:itemMargin="5dp"
+            app:itemHeight="40dp"
+            app:itemWidth="40dp"
+            app:backgroundSelector="@drawable/selector_background_example"
+            app:textColorSelector="@color/selector_text_view" />
+
+
+    </HorizontalScrollView>
     <com.goodiebag.horizontalpicker.HorizontalPicker
         android:id="@+id/hpImage"
         android:layout_width="match_parent"

@@ -30,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
         textItems.add(new HorizontalPicker.TextItem("S1"));
         textItems.add(new HorizontalPicker.TextItem("S2"));
         textItems.add(new HorizontalPicker.TextItem("S3"));
+        textItems.add(new HorizontalPicker.DrawableItem(R.drawable.icon_led));
         textItems.add(new HorizontalPicker.TextItem("S4"));
         textItems.add(new HorizontalPicker.TextItem("S5"));
 
-        hpText.setItems(textItems);
-        hpText.setSelectedIndex(0);
+        hpText.setItems(textItems,3);
 
         List<HorizontalPicker.PickerItem> imageItems = new ArrayList<>();
         imageItems.add(new HorizontalPicker.DrawableItem(R.drawable.icon_led));

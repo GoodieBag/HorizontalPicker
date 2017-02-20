@@ -2,6 +2,7 @@ package com.goodiebag.example.horizontalpicker;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.goodiebag.horizontalpicker.HorizontalPicker;
@@ -15,19 +16,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final TextView textView = (TextView) findViewById(R.id.tv);
         HorizontalPicker hpText = (HorizontalPicker) findViewById(R.id.hpText);
         HorizontalPicker hpImage = (HorizontalPicker) findViewById(R.id.hpImage);
         HorizontalPicker.OnSelectionChangeListener listener = new HorizontalPicker.OnSelectionChangeListener() {
             @Override
             public void onItemSelect(HorizontalPicker picker, int index) {
                 HorizontalPicker.PickerItem selected = picker.getSelectedItem();
-                Toast.makeText(MainActivity.this, selected.hasDrawable() ? "Item at " + (picker.getSelectedIndex() + 1) + " is selected" : selected.getText() + " is selected", Toast.LENGTH_SHORT).show();
+                textView.setText((selected.hasDrawable() ? "Item at " + (picker.getSelectedIndex() + 1) + " is selected" : selected.getText() + " is selected"));
+                //Toast.makeText(MainActivity.this, selected.hasDrawable() ? "Item at " + (picker.getSelectedIndex() + 1) + " is selected" : selected.getText() + " is selected", Toast.LENGTH_SHORT).show();
             }
 
         };
 
         List<HorizontalPicker.PickerItem> textItems = new ArrayList<>();
-        for(int i=1;i<=15;i++){
+        for(int i=1;i<=4;i++){
             textItems.add(new HorizontalPicker.TextItem("S"+i));
         }
 //        textItems.add(new HorizontalPicker.TextItem("S1"));

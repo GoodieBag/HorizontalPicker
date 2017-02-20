@@ -3,21 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="#fff"
+    android:background="#ccc"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        />
+
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:scrollbars="none">
 
         <com.goodiebag.horizontalpicker.HorizontalPicker
             android:id="@+id/hpText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#ccc"
+            android:layout_gravity="center"
             app:textSize="18sp"
             app:itemMargin="5dp"
             app:itemHeight="40dp"
@@ -31,7 +39,6 @@
         android:id="@+id/hpImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ccc"
         app:itemMargin="5dp"
         app:itemHeight="40dp"
         app:itemWidth="40dp"

@@ -1,7 +1,8 @@
 # Horizontal Picker
 
  A Horizontal picker library for android which supports both text and icons . :pouting_cat:
-
+ 
+![alt tag](https://github.com/GoodieBag/HorizontalPicker/blob/master/gif/HPtap.gif?raw=true)        ![alt tag](https://github.com/GoodieBag/HorizontalPicker/blob/master/gif/HPslide.gif?raw=true)
 
 ## Gradle Dependency
 

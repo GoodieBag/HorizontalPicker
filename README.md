@@ -23,6 +23,12 @@ dependencies {
 ```
 Sync the gradle and that's it! :+1:
 
+## Features : 
+* Supports icons and text or a mixture of both as items of the picker.
+* Tap or scroll horizontally to select the items.
+* Supports drawables, selectors and text highlighting using selectors.
+* Selection change listener to monitor the current selected item.
+
 ## Usage
 
 ### XML : 
@@ -76,8 +82,10 @@ HorizontalPicker.OnSelectionChangeListener listener = new HorizontalPicker.OnSel
 hpText.setChangeListener(listener);
 
 ```
+### Known Issues : 
+When the HorizontalPicker is wrapped in an HorizontalScrollView the scroll to select feature of the picker does not work as expected. This will be fixed soon. 
 
-## LICENSE
+## LICENSE : 
 ```
 MIT License
 

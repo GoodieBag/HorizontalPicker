@@ -1,5 +1,8 @@
 # Horizontal Picker
 
+[![Release](https://jitpack.io/v/User/Repo.svg)](https://jitpack.io/#GoodieBag/HorizontalPicker)
+[![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=15)
+
  A Horizontal picker library for android which supports both text and icons . :pouting_cat:
  
 ![alt tag](https://github.com/GoodieBag/HorizontalPicker/blob/master/gif/HPtap.gif?raw=true)        ![alt tag](https://github.com/GoodieBag/HorizontalPicker/blob/master/gif/HPslide.gif?raw=true)

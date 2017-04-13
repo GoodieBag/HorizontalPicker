@@ -29,6 +29,7 @@ import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -128,7 +129,7 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
         removeAllViews();
         this.setOrientation(HORIZONTAL);
         this.setOnTouchListener(this);
-        LayoutParams params = new LinearLayout.LayoutParams(itemWidth, itemHeight);
+
         TextView textView;
         ImageView imageView;
         for (PickerItem pickerItem : items) {
@@ -157,12 +158,15 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
      * @param view
      */
     private void initStyle(View view) {
-        LayoutParams params = new LinearLayout.LayoutParams(itemWidth, itemHeight);
+        MarginLayoutParams params = new MarginLayoutParams(itemWidth, itemHeight);
+        params.setMargins(itemMargin, 0, itemMargin, 0);
+
         view.setLayoutParams(params);
         view.setBackgroundResource(backgroundSelector);
         if (view instanceof TextView) {
             ((TextView) view).setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-            ((TextView) view).setTextColor(getResources().getColorStateList(colorSelector));
+            ((TextView) view).setTextColor(
+                ContextCompat.getColorStateList(getContext(), colorSelector));
         }
     }
 

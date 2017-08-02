@@ -135,17 +135,17 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
         for (PickerItem pickerItem : items) {
             if (pickerItem.hasDrawable()) {
                 imageView = new ImageView(getContext());
+                this.addView(imageView);
                 imageView.setImageResource(pickerItem.getDrawable());
                 imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 initStyle(imageView);
-                this.addView(imageView);
             } else {
                 if (pickerItem.getText() != null) {
                     textView = new TextView(getContext());
+                    this.addView(textView);
                     textView.setGravity(Gravity.CENTER);
                     textView.setText(pickerItem.getText());
                     initStyle(textView);
-                    this.addView(textView);
                 }
             }
         }
@@ -158,9 +158,10 @@ public class HorizontalPicker extends LinearLayout implements View.OnTouchListen
      * @param view
      */
     private void initStyle(View view) {
-        MarginLayoutParams params = new MarginLayoutParams(itemWidth, itemHeight);
+        LinearLayout.LayoutParams params = (LayoutParams) view.getLayoutParams();
+        params.width=itemWidth;
+        params.height=itemHeight;
         params.setMargins(itemMargin, 0, itemMargin, 0);
-
         view.setLayoutParams(params);
         view.setBackgroundResource(backgroundSelector);
         if (view instanceof TextView) {
